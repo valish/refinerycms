@@ -84,7 +84,7 @@
 
 <% content_for :javascripts do %>
   <script>
-    $(document).ready(function() {
+    $(document).on('ready page:load', function() {
       $('#user_plugins_enable_all').click(function(e, a) {
         $('div.field.plugin_access ul#plugins li input:checkbox').prop('checked', true);
         e.preventDefault();

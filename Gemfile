@@ -9,7 +9,7 @@ gem 'quiet_assets'
 gem 'refinerycms-acts-as-indexed', ['~> 2.0', '>= 2.0.0']
 
 # Add the default visual editor, for now.
-gem 'refinerycms-wymeditor', ['~> 1.0', '>= 1.0.2']
+gem 'refinerycms-wymeditor', ['~> 1.0', '>= 1.0.3']
 
 # Database Configuration
 unless ENV['TRAVIS']
@@ -37,6 +37,8 @@ group :test do
   gem 'launchy'
   gem 'coveralls', require: false
 end
+gem 'jquery-turbolinks'
+gem 'turbolinks'
 
 # Load local gems according to Refinery developer preference.
 if File.exist? local_gemfile = File.expand_path('../.gemfile', __FILE__)
