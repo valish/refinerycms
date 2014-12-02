@@ -1,9 +1,13 @@
 language: ruby
-cache: bundler
-bundler_args: --without development
+cache:
+  bundler: true
+  directories:
+    - spec/dummy
+install:
+  -  bundle install --without development --path=${BUNDLE_PATH:-vendor/bundle}
+  - "if [ ! -d spec/dummy ]; then bundle exec rake refinery:testing:dummy_app;fi"
 before_script:
   - "sh -e /etc/init.d/xvfb start"
-  - "bundle exec rake refinery:testing:dummy_app"
 script:
   - "DISPLAY=:99.0 bundle exec rspec $EXTENSION/spec"
 env:
