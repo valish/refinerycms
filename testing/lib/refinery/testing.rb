@@ -2,6 +2,19 @@ require 'refinerycms-core'
 require 'rspec-rails'
 require 'factory_girl'
 
+class FakeUser < ActiveRecord::Base
+  include Refinery::Core::UserContext
+end
+
+class FakeUserMigration < ActiveRecord::Migration
+  def change
+    create_table :fake_users do |t|
+      t.string :username
+      t.string :email
+      t.string :password
+    end
+  end
+end
 module Refinery
   autoload :TestingGenerator, 'generators/refinery/testing/testing_generator'
 
@@ -21,6 +34,13 @@ module Refinery
           end
         end
         FactoryGirl.find_definitions
+
+        if FactoryGirl.factories.none? { |f| f.name == :refinery_user}
+          FakeUserMigration.migrate(:up) unless FakeUser.table_exists?
+          FactoryGirl.define do
+            factory :refinery_user, class: FakeUser
+          end
+        end
       end
     end
 
