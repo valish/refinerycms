@@ -1,4 +1,4 @@
-# Encoding: UTF-8
+# Encoding: utf-8
 require File.expand_path('../core/lib/refinery/version', __FILE__)
 
 version = Refinery::Version.to_s
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.files             = `git ls-files -- lib/* templates/*`.split("\n")
 
-  s.add_dependency    'refinerycms-authentication', version
+  #s.add_dependency    'refinerycms-authentication', version
   s.add_dependency    'refinerycms-core',           version
   s.add_dependency    'refinerycms-images',         version
   s.add_dependency    'refinerycms-pages',          version
